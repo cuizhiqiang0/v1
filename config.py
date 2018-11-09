@@ -12,3 +12,5 @@ SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:cuicui@localhost/flask_micblog"
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 #数据库迁移文件路径
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_respository')
+
+

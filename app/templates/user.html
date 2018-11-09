@@ -1,0 +1,33 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>User: {{user.nickName}}!</h1>
+<table>
+    <tr valign="top">
+        <td><img src="{{user.avatar(128)}}"></td>
+        <td>
+              {% if user.about_me %}<p>{{user.about_me}}</p>{% endif %}
+            {% if user.last_seen %}<p><i>Last seen on: {{user.last_seen}}</i></p>{% endif %}
+            <p>{{user.followers.count()}} followers |
+                {% if user.id == g.user.id %}
+                    <a href="{{url_for('edit')}}">Edit</a>
+                    <a href="{{url_for('follow', nickName=user.nickName)}}">Follw</a>
+                    <a href="{{url_for('unfollow', nickName=user.nickName)}}">Unfollow</a>
+                 {% endif %}
+             </p>
+        </td>
+    </tr>
+</table>
+<hr>
+{% for post in posts %}
+<p>
+  <table>
+    <tr valign="top">
+        <td><img src="{{post.author.avatar(50)}}"></td><td><i>{{post.author.nickName}} says:</i><br>{{post.body}}</td>
+    </tr>
+</table>
+
+</p>
+{% endfor %}
+{% endblock %}
